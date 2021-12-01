@@ -18,7 +18,7 @@ impl Input {
 
     pub fn as_stream(&self) -> Result<BufReader<File>, Box<dyn error::Error>> {
         Ok(BufReader::new(
-        fs::File::open(format!("inputs/{}.txt", self.day))?
+            fs::File::open(format!("inputs/{}.txt", self.day))?
         ))
     }
 }
