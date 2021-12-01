@@ -19,5 +19,5 @@ fn solve1(data: Vec<i32>) -> usize {
 }
 
 fn solve2(data: Vec<i32>) -> usize {
-    data.windows(4).filter(|quartet| quartet[3] > quartet[0]).count()
+    data.windows(4).filter(|&quartet| quartet[3] > quartet[0]).count()
 }
