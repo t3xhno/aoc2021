@@ -30,6 +30,6 @@ fn solve1(data: Vec<i32>) {
 
 fn solve2(data: Vec<i32>) {
     println!("{}", data.windows(4)
-        .filter(|triplet| triplet[3] > triplet[0])
+        .filter(|quartet| quartet[3] > quartet[0])
         .count());
 }
