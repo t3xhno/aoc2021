@@ -1,9 +1,9 @@
 use std::error;
 
-use aoc2021::{get_inputs, config};
+use aoc2021::{get_inputs, config::Config};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
-    let config = config::Config::new()?;
+    let config = Config::new()?;
     let file_contents = get_inputs::as_string(&config.day)?;
 
     let data: Vec<i32> = file_contents.lines()
@@ -23,21 +23,13 @@ fn run(data: Vec<i32>, part: u8) {
 }
 
 fn solve1(data: Vec<i32>) {
-    let mut result = 0;
-    for i in 1..data.len() {
-        if data[i] > data[i - 1] {
-            result += 1;
-        }
-    }
-    println!("{}", result);
+    println!("{}", data.windows(2)
+        .filter(|&line| line[1] > line[0])
+        .count());
 }
 
 fn solve2(data: Vec<i32>) {
-    let mut result = 0;
-    for i in 3..data.len() {
-        if data[i-3] + data[i - 2] + data[i - 1] < data[i - 2] + data[i - 1] + data[i] {
-            result += 1;
-        }
-    }
-    println!("{}", result);
+    println!("{}", data.windows(4)
+        .filter(|triplet| triplet[3] > triplet[0])
+        .count());
 }
