@@ -1,2 +1,2 @@
 pub mod config;
-pub mod get_inputs;
+pub mod input;

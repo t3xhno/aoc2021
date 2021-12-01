@@ -1,17 +1,19 @@
 use std::error;
 
-use aoc2021::{get_inputs, config::Config};
+use aoc2021::{input::Input, config::Config};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
-    let file_contents = get_inputs::as_string(&config.day)?;
-
-    let data: Vec<i32> = file_contents.lines()
-        .map(|line| line.parse::<i32>().unwrap()).collect();
+    let file_contents = Input::new(&config.day).as_string()?;
+    let data: Vec<i32> = file_contents.lines().map(input_mapper).collect();
 
     run(data, config.part);
 
     Ok(())
+}
+
+fn input_mapper(line: &str) -> i32 {
+    line.parse::<i32>().unwrap()
 }
 
 fn run(data: Vec<i32>, part: u8) {
