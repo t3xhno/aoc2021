@@ -2,8 +2,8 @@ use std::error;
 use std::io::BufReader;
 use std::fs::{self, File};
 
-const INPUT_PATH: &'static str = "inputs";
 const INPUT_EXT: &'static str = "txt";
+const INPUT_PATH: &'static str = "inputs";
 
 pub struct Input {
     day: String,
