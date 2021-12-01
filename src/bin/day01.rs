@@ -16,20 +16,16 @@ fn main() -> Result<(), Box<dyn error::Error>> {
 
 fn run(data: Vec<i32>, part: u8) {
     match part {
-        1 => solve1(data),
-        _ => solve2(data),
+        1 => println!("{}", solve1(data)),
+        _ => println!("{}", solve2(data)),
     }
 
 }
 
-fn solve1(data: Vec<i32>) {
-    println!("{}", data.windows(2)
-        .filter(|&line| line[1] > line[0])
-        .count());
+fn solve1(data: Vec<i32>) -> usize {
+    data.windows(2).filter(|&line| line[1] > line[0]).count()
 }
 
-fn solve2(data: Vec<i32>) {
-    println!("{}", data.windows(4)
-        .filter(|quartet| quartet[3] > quartet[0])
-        .count());
+fn solve2(data: Vec<i32>) -> usize {
+    data.windows(4).filter(|quartet| quartet[3] > quartet[0]).count()
 }
