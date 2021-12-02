@@ -19,7 +19,7 @@ fn parse_input(input: &str) -> Vec<(u8, i32)> {
         .collect()
 }
 
-fn solve1(data: &Vec<(u8, i32)>) -> i32 {
+fn solve1(data: &[(u8, i32)]) -> i32 {
     let (hor, ver) = data.iter()
         .fold((0, 0), |(hor, ver), (op, i)| match op {
             b'f' => (hor + i, ver),
@@ -29,7 +29,7 @@ fn solve1(data: &Vec<(u8, i32)>) -> i32 {
     hor * ver
 }
 
-fn solve2(data: &Vec<(u8, i32)>) -> i32 {
+fn solve2(data: &[(u8, i32)]) -> i32 {
     let (hor, ver, _) = data.iter()
         .fold((0, 0, 0), |(hor, ver, aim), (op, i)| match op {
             b'f' => (hor + i, ver + aim * i, aim),
