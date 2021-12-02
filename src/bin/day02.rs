@@ -1,17 +1,14 @@
 use std::error;
 use itertools::Itertools;
 
-
 use aoc2021::{input::Input, config::Config};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
     let file_contents = Input::new(&config.day).as_string()?;
     let data = parse_input(&file_contents);
-
     println!("{}", solve1(&data));
     println!("{}", solve2(&data));
-
     Ok(())
 }
 
@@ -19,7 +16,7 @@ fn parse_input(input: &str) -> Vec<(u8, i32)> {
     input.split_whitespace()
         .tuples()
         .map(|(op, i)| (op.as_bytes()[0], i.parse::<i32>().unwrap()))
-        .collect::<Vec<(u8, i32)>>()
+        .collect()
 }
 
 fn solve1(data: &Vec<(u8, i32)>) -> i32 {
