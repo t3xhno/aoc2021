@@ -1,14 +1,14 @@
 use std::error;
 use itertools::Itertools;
 
-use aoc2021::{input::Input, config::Config};
+use aoc2021::{input::Input, config::Config, structs::Submarine};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
     let file_contents = Input::new(&config.day).as_string()?;
     let data = parse_input(&file_contents);
-    println!("{}", solve1(&data));
-    println!("{}", solve2(&data));
+    println!("{}", solve1(&data, &mut Submarine::new()));
+    println!("{}", solve2(&data, &mut Submarine::new()));
     Ok(())
 }
 
@@ -19,22 +19,12 @@ fn parse_input(input: &str) -> Vec<(u8, i32)> {
         .collect()
 }
 
-fn solve1(data: &[(u8, i32)]) -> i32 {
-    let (hor, ver) = data.iter()
-        .fold((0, 0), |(hor, ver), (op, i)| match op {
-            b'f' => (hor + i, ver),
-            b'd' => (hor, ver + i),
-            _ => (hor, ver - i),
-        });
-    hor * ver
+fn solve1(data: &[(u8, i32)], sub: &mut Submarine) -> i32 {
+    data.iter().for_each(|(op, i)| sub.move_part_1(*op, *i));
+    sub.dist()
 }
 
-fn solve2(data: &[(u8, i32)]) -> i32 {
-    let (hor, ver, _) = data.iter()
-        .fold((0, 0, 0), |(hor, ver, aim), (op, i)| match op {
-            b'f' => (hor + i, ver + aim * i, aim),
-            b'd' => (hor, ver, aim + i),
-            _ => (hor, ver, aim - i),
-        });
-    hor * ver
+fn solve2(data: &[(u8, i32)], sub: &mut Submarine) -> i32 {
+    data.iter().for_each(|(op, i)| sub.move_part_2(*op, *i));
+    sub.dist()
 }
