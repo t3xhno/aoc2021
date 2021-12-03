@@ -7,6 +7,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
     let file_contents = Input::new(&config.day).as_string()?;
     let data = parse_input(&file_contents);
     println!("{}", solve1(&data));
+    println!("{}", solve2(&data, 1) * solve2(&data, 0));
     Ok(())
 }
 
@@ -29,3 +30,13 @@ fn solve1(data: &[u32]) -> u32 {
         .sum::<u32>();
     x * (!x & 0xfff)
 }
+
+fn solve2(data: &[u32], oxygen: u32) -> u32 {
+    let mut data = data.to_vec();
+    for i in (0..12).rev() {
+      let keep = max_bit(&data, i) ^ oxygen;
+      data.retain(|x| (x>>i) & 1 == keep);
+      if data.len() == 1 { break }
+    }
+    data[0]
+  }
