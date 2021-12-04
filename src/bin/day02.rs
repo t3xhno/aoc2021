@@ -1,7 +1,7 @@
-use std::error;
 use itertools::Itertools;
+use std::error;
 
-use aoc2021::{input::Input, config::Config, structs::Submarine};
+use aoc2021::{config::Config, input::Input, structs::Submarine};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
@@ -12,7 +12,8 @@ fn main() -> Result<(), Box<dyn error::Error>> {
 }
 
 fn parse_input(input: &str) -> Vec<(u8, i32)> {
-    input.split_whitespace()
+    input
+        .split_whitespace()
         .tuples()
         .map(|(op, i)| (op.as_bytes()[0], i.parse::<i32>().unwrap()))
         .collect()
