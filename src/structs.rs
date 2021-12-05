@@ -36,5 +36,3 @@ impl Submarine {
         self.hor * self.ver
     }
 }
-
-struct BingoBoard {}
