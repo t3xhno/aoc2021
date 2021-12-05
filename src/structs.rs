@@ -6,7 +6,11 @@ pub struct Submarine {
 
 impl Submarine {
     pub fn new() -> Submarine {
-        Submarine { hor: 0, ver: 0, aim: 0 }
+        Submarine {
+            hor: 0,
+            ver: 0,
+            aim: 0,
+        }
     }
 
     pub fn move_part_1(&mut self, op: u8, i: i32) {
@@ -22,7 +26,7 @@ impl Submarine {
             b'f' => {
                 self.hor += i;
                 self.ver += self.aim * i;
-            },
+            }
             b'd' => self.aim += i,
             _ => self.aim -= i,
         }
@@ -32,3 +36,5 @@ impl Submarine {
         self.hor * self.ver
     }
 }
+
+struct BingoBoard {}

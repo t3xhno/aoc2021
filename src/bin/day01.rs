@@ -1,6 +1,6 @@
 use std::error;
 
-use aoc2021::{input::Input, config::Config, runner::Runner};
+use aoc2021::{config::Config, input::Input, runner::Runner};
 
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
@@ -19,5 +19,7 @@ fn solve1(data: Vec<i32>) -> usize {
 }
 
 fn solve2(data: Vec<i32>) -> usize {
-    data.windows(4).filter(|&quartet| quartet[3] > quartet[0]).count()
+    data.windows(4)
+        .filter(|&quartet| quartet[3] > quartet[0])
+        .count()
 }

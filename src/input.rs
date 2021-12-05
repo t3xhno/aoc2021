@@ -1,6 +1,6 @@
 use std::error;
-use std::io::BufReader;
 use std::fs::{self, File};
+use std::io::BufReader;
 
 const INPUT_EXT: &'static str = "txt";
 const INPUT_PATH: &'static str = "inputs";
@@ -11,7 +11,9 @@ pub struct Input {
 
 impl Input {
     pub fn new(day: &str) -> Input {
-        Input { day: String::from(day) }
+        Input {
+            day: String::from(day),
+        }
     }
 
     fn make_path(&self) -> String {
@@ -19,13 +21,13 @@ impl Input {
     }
 
     pub fn as_string(&self) -> Result<String, String> {
-        fs::read_to_string(self.make_path())
-            .or_else(|e| Err(format!("{}", e)))
+        fs::read_to_string(self.make_path()).or_else(|e| Err(format!("{}", e)))
     }
 
     pub fn as_stream(&self) -> Result<BufReader<File>, Box<dyn error::Error>> {
-        Ok(BufReader::new(
-            fs::File::open(format!("inputs/{}.txt", self.day))?
-        ))
+        Ok(BufReader::new(fs::File::open(format!(
+            "inputs/{}.txt",
+            self.day
+        ))?))
     }
 }
