@@ -25,7 +25,6 @@ fn parse_input(input: &str) -> Vec<u32> {
         .map(|line| u32::from_str_radix(line, 2).unwrap())
         .collect()
 }
-
 fn solve1(data: &[u32]) -> u32 {
     let x = (0..12).map(|i| max_bit(data, i) << i).sum::<u32>();
     x * (!x & 0xfff)

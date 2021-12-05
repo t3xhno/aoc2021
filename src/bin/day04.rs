@@ -10,6 +10,4 @@ fn main() -> Result<(), Box<dyn error::Error>> {
     Ok(())
 }
 
-fn parase_input(_input: &str) -> Vec<Vec<usize>> {
-    vec![vec![1, 2]]
-}
+fn parase_input(_input: &str) {}
