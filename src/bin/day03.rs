@@ -2,7 +2,6 @@ use std::error;
 
 use aoc2021::{config::Config, input::Input};
 
-// Git
 fn main() -> Result<(), Box<dyn error::Error>> {
     let config = Config::new()?;
     let file_contents = Input::new(&config.day).as_string()?;
